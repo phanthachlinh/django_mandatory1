@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html'%}
+
+{% block content %}
+<h2>Books</h2>
+{% if max_checkout_limit_reached == True %}
+<h2>You have checkout the maximum amount of books (10)</h2>
+{% endif %}
+  <ul>
+    {% for book in available_books.all %}
+      {% if book.user == NULL %}
+        <li>
+          <form method="post" action="/catalog/checkout">
+            {% csrf_token %}
+            <input type="hidden" name="bookId" value="{{book.id}}"/>
+           {{ book.title }}
+           {% if max_checkout_limit_reached == False %}
+            <button>Checkout</button>
+           {% endif %}
+          </form>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <h2>Magazines</h2>
+  <ul>
+    {% for magazine in available_magazines.all %}
+      {% if magazine.user == NULL %}
+        <li>
+          <form method="post" action="/catalog/checkout_magazine">
+            {% csrf_token %}
+            <input type="hidden" name="magazineId" value="{{magazine.id}}"/>
+           {{ magazine.title }}
+           {% if max_checkout_limit_reached_magazine == False %}
+            <button>Checkout</button>
+           {% endif %}
+          </form>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock %}

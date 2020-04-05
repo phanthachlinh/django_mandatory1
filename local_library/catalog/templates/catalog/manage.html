@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html'%}
+
+{% block content %}
+  <h2>Outstanding books</h2>
+  <ul>
+  {% for book in checkouted_books %}
+    <li>{{ book.title }} {{book.checkout_date}}</li>
+  {% endfor %}
+  </ul>
+  <h2>Outstanding magazines</h2>
+  <ul>
+  {% for magazine in checkouted_magazines %}
+    <li>{{ magazine.title }} {{magazine.checkout_date}}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

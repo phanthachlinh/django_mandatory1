@@ -1,0 +1,19 @@
+<nav>
+  <ul>
+    <li>
+      <a href="/catalog/list">List</a>
+    </li>
+    <li>
+      <a href="/catalog/mypage">My page</a>
+    </li>
+    {% if user.is_staff == True%}
+    <li>
+      <a href="/catalog/manage">Manage</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+<h1>Active user: {{user}}</h1>
+<a href="/catalog/logout">logout</a>
+{% block content %}
+{% endblock %}

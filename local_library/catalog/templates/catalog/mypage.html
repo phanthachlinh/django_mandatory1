@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html'%}
+
+{% block content %}
+<h2>My Books</h2>
+<ul>
+{% for book in my_books %}
+  <form action="/catalog/checkin" method="post">
+    {% csrf_token %}
+    <input name="bookId" type="hidden" value="{{book.id}}">
+    <li>{{book.title}} <button>Check in</button></li>
+  </form>
+{% endfor %}
+</ul>
+<h2>My Magazines</h2>
+<ul>
+{% for magazine in my_magazines %}
+  <form action="/catalog/checkin" method="post">
+    {% csrf_token %}
+    <input name="magazineId" type="hidden" value="{{magazine.id}}">
+    <li>{{magazine.title}} <button>Check in</button></li>
+  </form>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+<form method="post" action="{{post_url}}">
+  {% csrf_token %}
+
+  <input type="text" name="username" placeholder="User name"/>
+  <input type="password" name="password1" type="Password" />
+  <input type="password" name="password2" type="Repeat Password" />
+    {{error}}
+  {% if error == 0 %}
+    {{error}}
+    <p>Passwords dont match</p>
+  {% endif %}
+  <button>Sign in</button>
+</form>
